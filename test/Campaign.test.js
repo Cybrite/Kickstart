@@ -122,4 +122,16 @@ describe("Campaigns", () => {
       assert(error);
     }
   });
+
+  it("only manager can finalize request", async () => {
+    try {
+      await campaign.methods.finalizeRequest(0).send({
+        from: accounts[1],
+        gas: "1000000",
+      });
+      assert(false);
+    } catch (error) {
+      assert(error);
+    }
+  });
 });
