@@ -111,4 +111,15 @@ describe("Campaigns", () => {
     assert(balance > 103);
   });
 
+  it("only manager can create request", async () => {
+    try {
+      await campaign.methods.createRequest("random", "100", accounts[1]).send({
+        from: accounts[1],
+        gas: "1000000",
+      });
+      assert(false);
+    } catch (error) {
+      assert(error);
+    }
+  });
 });
